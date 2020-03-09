@@ -1,0 +1,12 @@
+C:\Users\Eli\source\repos\json-manipulator\gui\bin\Debug\gui.exe.config
+C:\Users\Eli\source\repos\json-manipulator\gui\bin\Debug\gui.exe
+C:\Users\Eli\source\repos\json-manipulator\gui\bin\Debug\gui.pdb
+C:\Users\Eli\source\repos\json-manipulator\gui\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Eli\source\repos\json-manipulator\gui\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Eli\source\repos\json-manipulator\gui\obj\Debug\gui.csprojAssemblyReference.cache
+C:\Users\Eli\source\repos\json-manipulator\gui\obj\Debug\gui.Interface.resources
+C:\Users\Eli\source\repos\json-manipulator\gui\obj\Debug\gui.Properties.Resources.resources
+C:\Users\Eli\source\repos\json-manipulator\gui\obj\Debug\gui.csproj.GenerateResource.cache
+C:\Users\Eli\source\repos\json-manipulator\gui\obj\Debug\gui.csproj.CopyComplete
+C:\Users\Eli\source\repos\json-manipulator\gui\obj\Debug\gui.exe
+C:\Users\Eli\source\repos\json-manipulator\gui\obj\Debug\gui.pdb
