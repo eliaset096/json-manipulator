@@ -16,8 +16,8 @@ namespace gui
     public partial class Interface : Form
     {
 
-        //  private string url = "https://www.datos.gov.co/resource/ysq6-ri4e.json";
-        private string url = "https://www.datos.gov.co/resource/ysq6-ri4e.json?autoridad_ambiental=AMVA";
+        private string url = "https://www.datos.gov.co/resource/ysq6-ri4e.json";
+        //private string url = "https://www.datos.gov.co/resource/ysq6-ri4e.json?autoridad_ambiental=AMVA";
         // private string url = "https://www.datos.gov.co/resource/ysq6-ri4e.json?autoridad_ambiental=AMVA"; 
         public Interface()
         {
@@ -60,7 +60,7 @@ namespace gui
 
         public void FilterForEntities(string entity) 
         {
-            url = "https://www.datos.gov.co/resource/ysq6-ri4e.json?autoridad_ambiental=" + entity;
+            url = "https://www.datos.gov.co/resource/ysq6-ri4e.json" + "?autoridad_ambiental=" + entity;
         }
 
         private async void Interface_Load(object sender, EventArgs e)
