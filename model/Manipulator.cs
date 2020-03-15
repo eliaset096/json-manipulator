@@ -9,7 +9,7 @@ namespace model
     public class Manipulator
     {
 
-      private Dat
+    
 
 
 
