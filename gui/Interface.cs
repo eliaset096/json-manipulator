@@ -15,20 +15,19 @@ namespace gui
 {
     public partial class Interface : Form
     {
-        //  private string url = "https://www.datos.gov.co/resource/ysq6-ri4e.json";
         private string url;
         private string url_final;
 
         private List<Medition> meditions;
         private string result;
         private Boolean boxChecked = false;
-        //private string url = "https://www.datos.gov.co/resource/ysq6-ri4e.json?autoridad_ambiental=AMVA";
 
         public Interface()
         {
             InitializeComponent();
         }
 
+        // Agre los componentes de los combobox a sus respectivos.
         public void AddDataEntitiesComboBox() {
 
             cbFields.Items.Add("Seleccione un campo");
@@ -60,8 +59,10 @@ namespace gui
         private async void Interface_Load(object sender, EventArgs e)
         {
             AddDataEntitiesComboBox();
+            btShowFields.Enabled = false;
         }
 
+        // Obtiene los datos de la url 
         public async Task<string> getHttps(String url_f)
         {
             WebRequest request = WebRequest.Create(url_f);
@@ -78,6 +79,7 @@ namespace gui
                 CheckBox cb = (CheckBox)c;
                 cb.Checked = true;
             }
+            btShowFields.Enabled = true;
         }
 
         // Desmarca todos los campos
@@ -88,6 +90,7 @@ namespace gui
                 CheckBox cb = (CheckBox)c;
                 cb.Checked = false;
             }
+            btShowFields.Enabled = false;
         }
 
         // Muestra los campos seleccionados 
@@ -115,10 +118,13 @@ namespace gui
                 MessageBox.Show("El Dataset buscado no fue encontrado");
             }
 
+            
             meditions = JsonConvert.DeserializeObject<List<Medition>>(result);
             if (boxChecked == true)
             {
+
                 dataGridView1.DataSource = meditions;
+                
             }
             else
             {
@@ -132,63 +138,120 @@ namespace gui
         {
             url_final = url;
 
+            // Agrega la clausula indicada a la url
             if (!cbClauses.SelectedItem.Equals("Seleccione un clausula"))
             {
-                if (cbClauses.SelectedItem.Equals("select")) {
-                    cbSeparater.Enabled = false;
-                    tbValue.Enabled = false;
-                    tbValue.Enabled = false;
+                if (cbClauses.SelectedItem.Equals("select"))
+                {
+                    url_final += "$" + cbClauses.SelectedItem + "=";
+
+                    if (!cbFields.SelectedItem.Equals("Seleccione un campo"))
+                    {
+                        url_final += cbFields.SelectedItem;
+                    }
+                    if (!cbSeparater.SelectedItem.Equals("Seleccione un separador"))
+                    {
+                        url_final += "  " + cbSeparater.SelectedItem;
+                    }
+                    if (!tbValue.Text.Equals(" "))
+                    {
+                        url_final += tbValue.Text;
+                    }
+                   
+
                 }
                 else if (cbClauses.SelectedItem.Equals("where"))
                 {
-                    cbSeparater.Enabled = true;
-                    tbValue.Enabled = true;
-                    tbValue.Enabled = true;
-                } else if (cbClauses.SelectedItem.Equals("order")) { 
+                    url_final += "$" + cbClauses.SelectedItem+"=";
+
+                    if (!cbFields.SelectedItem.Equals("Seleccione un campo"))
+                    {
+                        url_final += cbFields.SelectedItem;
+                    }
+                    if (!cbSeparater.SelectedItem.Equals("Seleccione un separador"))
+                    {
+                        url_final += "  " + cbSeparater.SelectedItem+ "  ";
+                    }
+                    if (!tbValue.Text.Equals(" "))
+                    {
+                        url_final += tbValue.Text;
+                    }
 
                 }
-                url_final += "&"+"$"+cbClauses.SelectedItem+"=";
+                else if (cbClauses.SelectedItem.Equals("order"))
+                {
+                    url_final += "$" + cbClauses.SelectedItem + "=";
+
+                    if (!cbFields.SelectedItem.Equals("Seleccione un campo"))
+                    {
+                        url_final += cbFields.SelectedItem;
+                    }
+                    if (!cbSeparater.SelectedItem.Equals("Seleccione un separador"))
+                    {
+                        url_final += "  "+cbSeparater.SelectedItem;
+                    }
+                    if (!tbValue.Text.Equals(" "))
+                    {
+                        url_final += tbValue.Text;
+                    }
+                   
+
+                } 
             }
 
+            /**
+            // Agrega el campo indicado a la url
+            if (!cbFields.SelectedItem.Equals("Seleccione un campo"))
+            {
+                url_final += " "+cbFields.SelectedItem;
+            }
+
+            // Agrega el separdor indicado a la url
             if (!cbSeparater.SelectedItem.Equals("Seleccione un separador"))
             {
                 url_final += cbSeparater.SelectedItem;
             }
 
-            if (!cbFields.SelectedItem.Equals("Seleccione un campo")) {
-                url_final += cbFields.SelectedItem+"";
-            }
-
+            // Agrega un valor particular a filtrar
             if (!tbValue.Text.Equals(" ")) {
                 url_final += tbValue.Text;
             }
-
-
+             
+              **/
 
             // Agrega el límite del número de filas
-            if (tbNumberRows.Text != null || !tbNumberRows.Equals(" "))
-            {
-                url_final += "&$limit=" + tbNumberRows.Text;
-            }
+             if (tbNumberRows.Text.Trim()!="")
+                 {
+                    url_final += "&$limit=" + tbNumberRows.Text;
+                 }
+             
+             
 
             Console.WriteLine(url_final);
 
             result = await getHttps(url_final);
+            url_final = "";
+
+            Console.WriteLine(url_final);
+
             if (result == null || result.Equals(""))
             {
                 MessageBox.Show("El Dataset buscado no fue encontrado");
             }
 
+            
             meditions = JsonConvert.DeserializeObject<List<Medition>>(result);
             if (boxChecked == true)
             {
                 dataGridView1.DataSource = meditions;
+              
             }
             else
             {
                 MessageBox.Show("Debe marcar algún campo");
             }
 
+          
         }
 
         private void cbClauses_SelectedIndexChanged(object sender, EventArgs e)
@@ -215,11 +278,49 @@ namespace gui
             {
                 cbSeparater.Items.Add("Seleccione un separador");
                 cbSeparater.SelectedIndex = 0;
-                cbSeparater.Items.Add("DES");
+                cbSeparater.Items.Add("DESC");
                 cbSeparater.Items.Add("ASC");
+            }
+
+
+            if (cbClauses.SelectedItem.Equals("select"))
+            {
+                cbSeparater.Enabled = false;
+                tbValue.Enabled = false;
+          
+            }
+            else if (cbClauses.SelectedItem.Equals("where"))
+            {
+                cbSeparater.Enabled = true;
+                tbValue.Enabled = true;
+            
+            }
+            else if (cbClauses.SelectedItem.Equals("order"))
+            {
+                cbSeparater.Enabled = true;
+                tbValue.Enabled = false;
+            }
+
+
+        }
+
+        private void tlpFields_Paint(object sender, PaintEventArgs e)
+        {
+            foreach (Control c in tlpFields.Controls)
+            {
+                CheckBox cb = (CheckBox)c;
+                if (cb.Checked==true)
+                {
+                    btShowFields.Enabled = true;
+                }
             }
         }
 
-       
+        private void cbFields_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbClauses.SelectedIndex == 0) {
+                cbSeparater.Enabled = false;
+            }
+        }
     }
 }

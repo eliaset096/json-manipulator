@@ -88,9 +88,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 294);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 301);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1009, 361);
+            this.dataGridView1.Size = new System.Drawing.Size(1191, 354);
             this.dataGridView1.TabIndex = 0;
             // 
             // button1
@@ -127,9 +127,9 @@
             this.panel1.Controls.Add(this.cbClauses);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Location = new System.Drawing.Point(537, 34);
+            this.panel1.Location = new System.Drawing.Point(665, 34);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(484, 261);
+            this.panel1.Size = new System.Drawing.Size(538, 261);
             this.panel1.TabIndex = 5;
             // 
             // btFilter
@@ -209,6 +209,7 @@
             this.cbFields.Name = "cbFields";
             this.cbFields.Size = new System.Drawing.Size(114, 21);
             this.cbFields.TabIndex = 14;
+            this.cbFields.SelectedIndexChanged += new System.EventHandler(this.cbFields_SelectedIndexChanged);
             // 
             // tbNumberRows
             // 
@@ -251,16 +252,16 @@
             " https://www.datos.gov.co/resource/ysq6-ri4e.json"});
             this.tbURLDataset.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.tbURLDataset.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbURLDataset.Location = new System.Drawing.Point(445, 3);
+            this.tbURLDataset.Location = new System.Drawing.Point(467, 3);
             this.tbURLDataset.Name = "tbURLDataset";
-            this.tbURLDataset.Size = new System.Drawing.Size(303, 20);
+            this.tbURLDataset.Size = new System.Drawing.Size(387, 20);
             this.tbURLDataset.TabIndex = 10;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(263, 6);
+            this.label2.Location = new System.Drawing.Point(285, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(159, 13);
             this.label2.TabIndex = 3;
@@ -357,6 +358,7 @@
             this.tlpFields.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpFields.Size = new System.Drawing.Size(295, 230);
             this.tlpFields.TabIndex = 18;
+            this.tlpFields.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpFields_Paint);
             // 
             // checkBox15
             // 
@@ -541,7 +543,7 @@
             // btBack
             // 
             this.btBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBack.Location = new System.Drawing.Point(254, 656);
+            this.btBack.Location = new System.Drawing.Point(327, 661);
             this.btBack.Name = "btBack";
             this.btBack.Size = new System.Drawing.Size(75, 23);
             this.btBack.TabIndex = 8;
@@ -551,7 +553,7 @@
             // btNext
             // 
             this.btNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNext.Location = new System.Drawing.Point(719, 655);
+            this.btNext.Location = new System.Drawing.Point(792, 660);
             this.btNext.Name = "btNext";
             this.btNext.Size = new System.Drawing.Size(75, 23);
             this.btNext.TabIndex = 9;
@@ -560,7 +562,7 @@
             // 
             // btFirst
             // 
-            this.btFirst.Location = new System.Drawing.Point(335, 656);
+            this.btFirst.Location = new System.Drawing.Point(408, 661);
             this.btFirst.Name = "btFirst";
             this.btFirst.Size = new System.Drawing.Size(75, 23);
             this.btFirst.TabIndex = 10;
@@ -569,7 +571,7 @@
             // 
             // btLast
             // 
-            this.btLast.Location = new System.Drawing.Point(638, 656);
+            this.btLast.Location = new System.Drawing.Point(711, 661);
             this.btLast.Name = "btLast";
             this.btLast.Size = new System.Drawing.Size(75, 23);
             this.btLast.TabIndex = 11;
@@ -579,7 +581,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(495, 661);
+            this.label10.Location = new System.Drawing.Point(568, 666);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(13, 13);
             this.label10.TabIndex = 12;
@@ -588,7 +590,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(514, 661);
+            this.label11.Location = new System.Drawing.Point(587, 666);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(12, 13);
             this.label11.TabIndex = 13;
@@ -597,7 +599,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(532, 661);
+            this.label12.Location = new System.Drawing.Point(605, 666);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(13, 13);
             this.label12.TabIndex = 14;
@@ -610,14 +612,14 @@
             this.panel5.Controls.Add(this.tbURLDataset);
             this.panel5.Location = new System.Drawing.Point(12, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1009, 30);
+            this.panel5.Size = new System.Drawing.Size(1191, 30);
             this.panel5.TabIndex = 22;
             // 
             // Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1033, 680);
+            this.ClientSize = new System.Drawing.Size(1215, 686);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
