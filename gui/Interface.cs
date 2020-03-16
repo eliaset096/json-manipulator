@@ -32,6 +32,8 @@ namespace gui
 
             cbFields.Items.Add("Seleccione un campo");
             cbFields.SelectedIndex = 0;
+
+            /**
             cbFields.Items.Add("fecha");
             cbFields.Items.Add("autoridad_ambiental");
             cbFields.Items.Add("nombre_de_la_estaci_n");
@@ -47,7 +49,8 @@ namespace gui
             cbFields.Items.Add("variable");
             cbFields.Items.Add("unidades");
             cbFields.Items.Add("concentraci_n");
-
+            **/
+           
             cbClauses.Items.Add("Seleccione un clausula");
             cbClauses.SelectedIndex = 0;
             cbClauses.Items.Add("select");
@@ -128,6 +131,15 @@ namespace gui
                 MessageBox.Show("Debe marcar algún campo");
             }
 
+
+            foreach (Control c in tlpFields.Controls)
+            {
+                CheckBox cb = (CheckBox)c;
+                if (cb.Checked) {
+                    cbFields.Items.Add(cb.Text);
+                }
+            }
+  
         }
 
         // Muestra los filtros
