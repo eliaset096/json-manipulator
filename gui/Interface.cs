@@ -118,13 +118,10 @@ namespace gui
                 MessageBox.Show("El Dataset buscado no fue encontrado");
             }
 
-            
             meditions = JsonConvert.DeserializeObject<List<Medition>>(result);
             if (boxChecked == true)
             {
-
-                dataGridView1.DataSource = meditions;
-                
+                dataGridView1.DataSource = meditions;  
             }
             else
             {
@@ -157,7 +154,6 @@ namespace gui
                     {
                         url_final += tbValue.Text;
                     }
-                   
 
                 }
                 else if (cbClauses.SelectedItem.Equals("where"))
@@ -195,38 +191,16 @@ namespace gui
                         url_final += tbValue.Text;
                     }
                    
-
                 } 
             }
 
-            /**
-            // Agrega el campo indicado a la url
-            if (!cbFields.SelectedItem.Equals("Seleccione un campo"))
-            {
-                url_final += " "+cbFields.SelectedItem;
-            }
-
-            // Agrega el separdor indicado a la url
-            if (!cbSeparater.SelectedItem.Equals("Seleccione un separador"))
-            {
-                url_final += cbSeparater.SelectedItem;
-            }
-
-            // Agrega un valor particular a filtrar
-            if (!tbValue.Text.Equals(" ")) {
-                url_final += tbValue.Text;
-            }
-             
-              **/
 
             // Agrega el límite del número de filas
              if (tbNumberRows.Text.Trim()!="")
-                 {
-                    url_final += "&$limit=" + tbNumberRows.Text;
-                 }
+             {
+                url_final += "&$limit=" + tbNumberRows.Text;
+             }
              
-             
-
             Console.WriteLine(url_final);
 
             result = await getHttps(url_final);
@@ -239,7 +213,6 @@ namespace gui
                 MessageBox.Show("El Dataset buscado no fue encontrado");
             }
 
-            
             meditions = JsonConvert.DeserializeObject<List<Medition>>(result);
             if (boxChecked == true)
             {
@@ -251,12 +224,10 @@ namespace gui
                 MessageBox.Show("Debe marcar algún campo");
             }
 
-          
         }
 
         private void cbClauses_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             cbSeparater.Items.Clear();
 
             if (cbClauses.SelectedItem.Equals("select"))
@@ -264,7 +235,6 @@ namespace gui
                 cbSeparater.Items.Add("Seleccione un separador");
                 cbSeparater.SelectedIndex = 0;
                 cbSeparater.Items.Add("=");
-
             }
             else if (cbClauses.SelectedItem.Equals("where"))
             {
@@ -282,25 +252,21 @@ namespace gui
                 cbSeparater.Items.Add("ASC");
             }
 
-
             if (cbClauses.SelectedItem.Equals("select"))
             {
                 cbSeparater.Enabled = false;
                 tbValue.Enabled = false;
-          
             }
             else if (cbClauses.SelectedItem.Equals("where"))
             {
                 cbSeparater.Enabled = true;
                 tbValue.Enabled = true;
-            
             }
             else if (cbClauses.SelectedItem.Equals("order"))
             {
                 cbSeparater.Enabled = true;
                 tbValue.Enabled = false;
             }
-
 
         }
 
