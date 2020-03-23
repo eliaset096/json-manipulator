@@ -22,6 +22,12 @@ namespace gui
         private string result;
         private Boolean boxChecked = false;
 
+        private DataGridView totalData;
+        private int totalRows;
+        private int currentPage;
+        private int maxPages;
+        private int rowsPerPage;
+
         public Interface()
         {
             InitializeComponent();
@@ -33,6 +39,7 @@ namespace gui
             cbFields.Items.Add("Seleccione un campo");
             cbFields.SelectedIndex = 0;
 
+           
             /**
             cbFields.Items.Add("fecha");
             cbFields.Items.Add("autoridad_ambiental");
@@ -61,6 +68,13 @@ namespace gui
 
         private async void Interface_Load(object sender, EventArgs e)
         {
+            totalData = new DataGridView();
+            totalRows = 0;
+            currentPage = 0;
+            maxPages = 0;
+            rowsPerPage = 0;
+
+
             AddDataEntitiesComboBox();
             btShowFields.Enabled = false;
         }
