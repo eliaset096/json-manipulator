@@ -6,7 +6,7 @@
 
 ## Authors
 
-- Elías Estupiñan - [eliaset](https://github.com/eliaset096)
+- Elías Estupiñan - [eliaset096](https://github.com/eliaset096)
 
 - Luis Gómez - [gomezLF](https://github.com/gomezLF)
 
